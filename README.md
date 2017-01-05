@@ -1,4 +1,5 @@
 This project contains 6 files as:
+
 1. apiCss.css - is the CSS file for the complete project
 2. APIDemo.html - is the main html file, or what we usually call the index.html file
 3. apiScript.js - is the main javascript file, having all the major coding part
