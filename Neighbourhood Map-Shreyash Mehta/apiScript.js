@@ -153,7 +153,8 @@ function initMap() {
         //If you cant get a wiki request, throw an error message.
         var wikiError = setTimeout(function() {
           location.url = 'Unable to find the request';
-        }, 8000);
+          alert('Unable to find the request');
+        }, 4000);
 
         $.ajax({
           url: wikiUrl,
