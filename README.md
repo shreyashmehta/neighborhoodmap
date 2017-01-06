@@ -6,3 +6,7 @@ This project contains 6 files as:
 4. bootstrap.min.css - framework file
 5. jquery-3.1.1.min.js - the jquery library
 6. knockout-3.4.1.js - the main javascript framework
+
+To run this project you need to run the APIDemo.html file.
+
+All the scripts are written in the apiScripts.js file, the initMap function, setting up the marker, the list view, everyhting.
