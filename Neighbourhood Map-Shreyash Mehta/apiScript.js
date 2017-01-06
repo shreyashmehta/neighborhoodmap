@@ -109,6 +109,10 @@ var locations = [{
     }
 ];
 
+function googleError() {
+    alert("Google Maps not responding");
+}
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -168,12 +172,6 @@ function initMap() {
 }
 
 function populateInfoWindow(marker, infoWindow) {
-    //creates an animation of toggle bounce on the marker
-    if (marker.getAnimation() != null) {
-        marker.setAnimation(null);
-    } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
     if (infoWindow.marker != marker) {
         infoWindow.setContent('');
         infoWindow.marker = marker;
@@ -206,7 +204,7 @@ function populateInfoWindow(marker, infoWindow) {
                 };
                 var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
             } else {
-                infoWindow.setContent('<div>' + marker.title + '</div>' + '<div>No Street View Found</div>');
+                infoWindow.setContent('<div>' + marker.title + '</div>' + '<div>No Street View Found</div><div><a href=' +marker.wikiurl+'>More Info</a></div>');
             }
         }
 
@@ -225,6 +223,7 @@ function ViewModel(markers) {
         self.items().forEach(function(item) {
             if (item.marker) {
                 item.marker.setVisible(true);
+                item.marker.setAnimation(null);
             }
         });
 
@@ -247,10 +246,15 @@ function ViewModel(markers) {
         return string.substring(0, startsWith.length) === startsWith;
     };
 
-
     this.showInfoWindow = function(marker) {
         google.maps.event.trigger(marker.marker, 'click');
+        marker.marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function() {
+            marker.marker.setAnimation(null); 
+        }, 1500);  
     };
+
+    
 
 }
 ko.applyBindings(new ViewModel());
