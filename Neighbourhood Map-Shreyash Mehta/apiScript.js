@@ -123,9 +123,9 @@ function initMap() {
     });
 
     var largeInfoWindow = new google.maps.InfoWindow();
+    var locationsLength = locations.length;
 
-
-    for (var i = 0; i < locations.length; i++) {
+    for (var i = 0; i < locationsLength ; i++) {
         //get the position and title from the array locations
         var position = locations[i].location;
         var title = locations[i].title;
@@ -140,8 +140,14 @@ function initMap() {
         //push the created marker into the markers array
         markers.push(marker);
         //create an onClick event to open a new InfoWindow at each marker
+        //and also set the animation on the clicked marker
         marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfoWindow);
+            var self = this;
+            self.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                self.setAnimation(null); 
+            }, 2100);
+            populateInfoWindow(self, largeInfoWindow);
         });
         locations[i].marker = marker;
         wikiLink(locations[i]);
@@ -161,15 +167,12 @@ function initMap() {
           dataType: "jsonp",
           jsonp: "callback",
           success: function(response) {
-            console.log(response);
             var url = response[3][0];
-            console.log(url);
             location.marker.wikiurl = url;
-            console.log(location.url);
             clearTimeout(wikiError);
           }
         });
-      };
+    }
 }
 
 function populateInfoWindow(marker, infoWindow) {
@@ -249,13 +252,6 @@ function ViewModel(markers) {
 
     this.showInfoWindow = function(marker) {
         google.maps.event.trigger(marker.marker, 'click');
-        marker.marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function() {
-            marker.marker.setAnimation(null); 
-        }, 1500);  
     };
-
-    
-
 }
 ko.applyBindings(new ViewModel());
