@@ -1,3 +1,15 @@
+#Neighborhood Map
+
+##Task
+Objective of this project "Neighbourhood Map" was to learn and understand various google APIs and their services by creating a ma of our nearby favourite places.
+
+##Technology Used
+Knockout JS framework is used in the project. The concept of Model View ViewModel (MVVM) is used.
+
+##Obstacles & Solutions
+The most confusing and difficult part of this project was to filter the list and the markers. But, forums helped me a lot and also 1:1 appointment with the mentor helped
+
+##Project Files
 This project contains 6 files as:
 
 1. apiCss.css - is the CSS file for the complete project
