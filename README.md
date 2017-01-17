@@ -22,3 +22,4 @@ This project contains 6 files as:
 To run this project you need to run the APIDemo.html file.
 
 All the scripts are written in the apiScripts.js file, the initMap function, setting up the marker, the list view, everyhting.
+ 
